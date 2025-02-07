@@ -5,13 +5,17 @@ class Play extends Phaser.Scene {
 
     create() {
         // add background image
-        
-
-        // set up camera
-
+        this.map = this.add.image(0, 0, 'map').setOrigin(0)
 
         // add new Hero to scene (scene, x, y, key, frame, direction)
         this.hero = new Hero(this, 200, 150, 'hero', 0, 'down')
+
+        // set up camera
+        this.cameras.main.setBounds(0, 0, this.map.width, this.map.height)
+        this.cameras.main.startFollow(this.hero, false, 1, 1)
+        this.physics.world.setBounds(0, 0, this.map.width, this.map.height)
+
+        
 
         // setup keyboard input
         this.keys = this.input.keyboard.createCursorKeys()
@@ -27,7 +31,7 @@ class Play extends Phaser.Scene {
         // update instruction text
         document.getElementById('info').innerHTML = '<strong>CharacterFSM.js:</strong> Arrows: move | SPACE: attack | SHIFT: dash attack | F: spin attack | H: hurt (knockback) | D: debug (toggle)'
 
-        
+
     }
 
     update() {

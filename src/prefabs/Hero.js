@@ -7,6 +7,7 @@ class Hero extends Phaser.Physics.Arcade.Sprite {
 
         this.body.setSize(this.width / 2, this.height / 2)
         this.body.setCollideWorldBounds(true)
+        //this.body.setCollideWorldBounds()
 
         // set custom Hero properties
         this.direction = direction 
@@ -203,8 +204,7 @@ class CircularState extends State{
     enter(scene, hero) {
         //hero.setTint(0x0000FF)
         hero.setVelocity(0)
-        hero.anims.play('cicular-attack')
-        hero.once('animationcomplete', () => {
+        hero.anims.play('cicular-attack').once('animationcomplete', () => {
             this.stateMachine.transition('idle')
         })
     }
